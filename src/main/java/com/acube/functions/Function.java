@@ -14,23 +14,21 @@ public class Function {
      * 2. curl {your host}/api/hello?name=HTTP%20Query
      */
     @FunctionName("hello")
-    public String hello(
-            @HttpTrigger(name = "req", methods = {"get", "post"}, authLevel = AuthorizationLevel.ANONYMOUS) String request,
-            ExecutionContext context) {
-//        context.getLogger().info("Java HTTP trigger processed a request.");
-        System.out.println("hjfbejbfnhjedbnvkdnvjndfjvn");
-        return String.format("Hello. %s!",request);
+    public HttpResponseMessage<String> hello(
+            @HttpTrigger(name = "req", methods = {"get", "post"}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
+            final ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request.");
 
         // Parse query parameter
-//        String query = request.getQueryParameters().get("name");
-//        String name = request.getBody().orElse(query);
-//
-//        if (name == null) {
-//            System.out.println("Hiiiiiii");
-//            return request.createResponse(400, "Please pass a name on the query string or in the request body");
-//        } else {
-//            System.out.println("Hello");
-//            return request.createResponse(200, "Hello, " + name);
-//        }
+        String query = request.getQueryParameters().get("name");
+        String name = request.getBody().orElse(query);
+
+        if (name == null) {
+            return request.createResponse(400, "Please pass a name on the query string or in the request body");
+        } else {
+            return request.createResponse(200, "Hello, " + name);
+        }
     }
 }
+
+//@BlobTrigger(name = "blob", dataType ="blobTrigger", path = "acube/data/meta/HandsetDeviceMetadataM3/handset_device_metadata_m3.csv.gz", connection = "DefaultEndpointsProtocol=https;AccountName=acube;AccountKey=d3ogxHhcfajnM6GmTGRrbvoSujAF686e5OjqxtcJDnTHCQnlIP4VnYe1UrOmzFBaAuzIJsoFi5oPPXj3otdTZw==;TableEndpoint=https://acube.table.cosmosdb.azure.com:443/;") {
