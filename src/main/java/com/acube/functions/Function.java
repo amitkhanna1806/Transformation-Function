@@ -30,5 +30,3 @@ public class Function {
         }
     }
 }
-
-//@BlobTrigger(name = "blob", dataType ="blobTrigger", path = "acube/data/meta/HandsetDeviceMetadataM3/handset_device_metadata_m3.csv.gz", connection = "DefaultEndpointsProtocol=https;AccountName=acube;AccountKey=d3ogxHhcfajnM6GmTGRrbvoSujAF686e5OjqxtcJDnTHCQnlIP4VnYe1UrOmzFBaAuzIJsoFi5oPPXj3otdTZw==;TableEndpoint=https://acube.table.cosmosdb.azure.com:443/;") {

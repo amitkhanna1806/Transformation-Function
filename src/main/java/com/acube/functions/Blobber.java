@@ -14,7 +14,7 @@ public class Blobber {
 
     public static void main(String[] args) throws InvalidKeyException, URISyntaxException, IOException, StorageException {
         // Define the connection-string with your values
-       String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=acube;AccountKey=BIsAZCGgSQPcqR+8vOJqaGs5T0/WfAo9HhMREyYatrhRPWmiQ8ENLHaURVmesC9e2n0mmIsCspje6ORcS+znbw==;EndpointSuffix=core.windows.net";
+       String storageConnectionString = Utility.STORAGE_CONNECTION_STRING_BLOB;
 
        CloudBlobContainer container = getContainer(storageConnectionString, "acubetest");
 
@@ -53,15 +53,16 @@ public class Blobber {
         return blob;
     }
 
-    public static void getBlobs(CloudBlobContainer container) throws IOException, StorageException {
-        String filePath = "";
+    public static String getBlobs(CloudBlobContainer container) throws IOException, StorageException {
+        String finalBlob="";
         for (ListBlobItem blobItem : container.listBlobs()) {
             // If the item is a blob, not a virtual directory
             if (blobItem instanceof CloudBlockBlob) {
                 // Download the text
                 CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
-                System.out.println(retrievedBlob.downloadText());
+                finalBlob=finalBlob+retrievedBlob.downloadText();
             }
         }
+        return finalBlob;
     }
 }
