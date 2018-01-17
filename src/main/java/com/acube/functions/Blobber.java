@@ -16,11 +16,13 @@ public class Blobber {
         // Define the connection-string with your values
        String storageConnectionString = Utility.STORAGE_CONNECTION_STRING_BLOB;
 
-       CloudBlobContainer container = getContainer(storageConnectionString, "acubetest");
+       CloudBlobContainer container = getContainer(storageConnectionString, "acube");
 
-       CloudBlockBlob blob = updateBlob("/Users/sandeep.samudrala/azure/Transformation-Function/src/resources/handset_device_metadata_m3.csv", "handset_device_metadata_m3.csv", container);
+       //CloudBlockBlob blob = updateBlob("/Users/sandeep.samudrala/azure/Transformation-Function/src/resources/handset_device_metadata_m3.csv", "handset_device_metadata_m3.csv", container);
 
        getBlobs(container);
+
+
 
     }
 
@@ -63,6 +65,7 @@ public class Blobber {
                 finalBlob=finalBlob+retrievedBlob.downloadText();
             }
         }
+        System.out.println(finalBlob);
         return finalBlob;
     }
 }

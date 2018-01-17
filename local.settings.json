@@ -1,7 +1,7 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "",
+    "AzureWebJobsStorage": "acube",
     "AzureWebJobsDashboard": ""
   },
   "Host": {
